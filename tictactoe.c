@@ -19,6 +19,8 @@ void printField(int arr[3][3]) {
     if (i != 2) printf("----------\n");
   }
 }
+
+int **ai(int arr[3][3]) {}
 int check(int arr[3][3]) {
   if (arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2] && arr[0][0] != 0)
     return arr[0][0];
@@ -30,7 +32,12 @@ int check(int arr[3][3]) {
     if (arr[0][i] == arr[1][i] && arr[1][i] == arr[2][i] && arr[0][i] != 0)
       return arr[0][i];
   }
-  return 0;
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      if (arr[i][j] == 0) return 0;
+    }
+  }
+  return 3;
 }
 int main() {
   int turn = 1;
@@ -46,6 +53,7 @@ int main() {
       printf("X\n");
 
     scanf("%d %d", &x, &y);
+
     if (x < 1 || x > 3 || y < 1 || y > 3) {
       printf("\033[2J");  // 전체 화면 지우기
       printf("Out of range\n");
@@ -67,6 +75,7 @@ int main() {
       printField(arr);
       if (result == 1) printf("O win!");
       if (result == 2) printf("X win!");
+      if (result == 3) printf("Draw!");
       break;
     }
     printf("\033[2J");  // 전체 화면 지우기
